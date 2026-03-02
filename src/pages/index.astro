@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Promociones from '../components/Promociones.astro';
+import Productos from '../components/Productos.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="MedicoAdmin - Tu Farmacia de Confianza" 
+  description="Descubre las mejores promociones y productos para tu salud en MedicoAdmin. Medicamentos, suplementos y más."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Promociones />
+    <Productos />
+  </main>
+  <Footer />
+</Layout>
