@@ -1,0 +1,214 @@
+---
+const productos = [
+  {
+    id: 1,
+    nombre: "Paracetamol 500mg",
+    categoria: "Analgésicos",
+    precio: "$89",
+    stock: "En stock",
+    nuevo: false,
+  },
+  {
+    id: 2,
+    nombre: "Vitamina D3 + K2",
+    categoria: "Suplementos",
+    precio: "$459",
+    stock: "En stock",
+    nuevo: true,
+  },
+  {
+    id: 3,
+    nombre: "Alcohol en Gel 500ml",
+    categoria: "Higiene",
+    precio: "$129",
+    stock: "En stock",
+    nuevo: false,
+  },
+  {
+    id: 4,
+    nombre: "Omega 3 Premium",
+    categoria: "Suplementos",
+    precio: "$689",
+    stock: "En stock",
+    nuevo: true,
+  },
+  {
+    id: 5,
+    nombre: "Termómetro Digital",
+    categoria: "Equipos",
+    precio: "$349",
+    stock: "Pocos disponibles",
+    nuevo: true,
+  },
+  {
+    id: 6,
+    nombre: "Mascarillas N95 x20",
+    categoria: "Protección",
+    precio: "$599",
+    stock: "En stock",
+    nuevo: false,
+  },
+];
+---
+
+<section id="productos" class="productos">
+  <div class="container">
+    <div class="section-header">
+      <h2>Productos Recientes</h2>
+      <p>Descubre nuestros productos más nuevos y populares</p>
+    </div>
+    
+    <div class="productos-grid">
+      {productos.map((producto) => (
+        <article class="producto-card">
+          {producto.nuevo && <span class="badge-nuevo">Nuevo</span>}
+          <div class="producto-image">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="40" y="40" width="120" height="120" rx="10" fill="#e0e7ff"/>
+              <circle cx="100" cy="100" r="30" fill="#2563eb"/>
+              <path d="M100 85L100 115M85 100L115 100" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="producto-info">
+            <span class="producto-categoria">{producto.categoria}</span>
+            <h3>{producto.nombre}</h3>
+            <p class={`producto-stock ${producto.stock !== "En stock" ? "stock-bajo" : ""}`}>
+              {producto.stock}
+            </p>
+            <div class="producto-footer">
+              <span class="producto-precio">{producto.precio}</span>
+              <button class="btn btn-primary btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="productos-cta">
+      <button class="btn btn-secondary">Ver Todos los Productos</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .productos {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--bg-white);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .section-header h2 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .section-header p {
+    color: var(--text-light);
+    font-size: 1.125rem;
+  }
+
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .producto-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .producto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .badge-nuevo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .producto-image {
+    background-color: var(--bg-light);
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+
+  .producto-info {
+    padding: var(--spacing-md);
+  }
+
+  .producto-categoria {
+    color: var(--primary-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .producto-info h3 {
+    color: var(--text-dark);
+    font-size: 1.125rem;
+    margin: var(--spacing-xs) 0;
+  }
+
+  .producto-stock {
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .producto-stock.stock-bajo {
+    color: var(--accent-color);
+  }
+
+  .producto-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+  }
+
+  .producto-precio {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .productos-cta {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+  }
+
+  @media (max-width: 768px) {
+    .productos-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

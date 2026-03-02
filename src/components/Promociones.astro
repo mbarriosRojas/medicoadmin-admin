@@ -1,0 +1,164 @@
+---
+const promociones = [
+  {
+    id: 1,
+    titulo: "Vitamina C 50% OFF",
+    descripcion: "Fortalece tu sistema inmunológico",
+    descuento: "50%",
+    precio: "$299",
+    precioAnterior: "$599",
+  },
+  {
+    id: 2,
+    titulo: "Pack Familiar",
+    descripcion: "3x2 en productos de cuidado personal",
+    descuento: "3x2",
+    precio: "$899",
+    precioAnterior: "$1,349",
+  },
+  {
+    id: 3,
+    titulo: "Suplementos Deportivos",
+    descripcion: "20% en toda la línea deportiva",
+    descuento: "20%",
+    precio: "$1,199",
+    precioAnterior: "$1,499",
+  },
+  {
+    id: 4,
+    titulo: "Kit Primeros Auxilios",
+    descripcion: "Todo lo esencial para tu hogar",
+    descuento: "30%",
+    precio: "$699",
+    precioAnterior: "$999",
+  },
+];
+---
+
+<section id="promociones" class="promociones">
+  <div class="container">
+    <div class="section-header">
+      <h2>Promociones Especiales</h2>
+      <p>Aprovecha nuestras ofertas limitadas</p>
+    </div>
+    
+    <div class="promociones-grid">
+      {promociones.map((promo) => (
+        <article class="promo-card">
+          <div class="promo-badge">{promo.descuento}</div>
+          <div class="promo-icon">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="35" fill="#fef3c7"/>
+              <path d="M40 20L40 60M20 40L60 40" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>{promo.titulo}</h3>
+          <p>{promo.descripcion}</p>
+          <div class="promo-price">
+            <span class="price-old">{promo.precioAnterior}</span>
+            <span class="price-new">{promo.precio}</span>
+          </div>
+          <button class="btn btn-primary">Comprar Ahora</button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .promociones {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--bg-light);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .section-header h2 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .section-header p {
+    color: var(--text-light);
+    font-size: 1.125rem;
+  }
+
+  .promociones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .promo-card {
+    background-color: var(--bg-white);
+    border-radius: 1rem;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .promo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .promo-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .promo-icon {
+    margin: var(--spacing-sm) auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .promo-card h3 {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .promo-card p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .promo-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .price-old {
+    text-decoration: line-through;
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+
+  .price-new {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .promociones-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
